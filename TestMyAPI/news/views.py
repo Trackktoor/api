@@ -26,7 +26,7 @@ def setupNewProject(request):
             serializer.save()
             return Response({'status': "OK"}, status=status.HTTP_201_CREATED)
         else:
-            print(serializer.errors)
+            return Response({'status': "ERR", 'errCode': 10})
 
 @csrf_protect
 @api_view(['GET', 'DELETE'])
@@ -64,7 +64,7 @@ def NewProjectRequest(request):
         serializer.save()
         return Response({'data': serializer.data, 'status': "OK"})
     else:
-        print(serializer.errors)
+        return Response({'status': "ERR", 'errCode': 10})
 
 @api_view(['POST'])
 def NewConsultRequest(request):

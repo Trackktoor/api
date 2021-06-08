@@ -28,7 +28,6 @@ def URLs_list(request):
             url_hash.save()
             return Response({'data': serializer.data, 'status': "OK"})
         else:
-            print(serializer.errors)
             return Response({'status': "ERR", 'errCode': 10}) #bed request
 
 def click_test_redirection_view(request, url_hash):

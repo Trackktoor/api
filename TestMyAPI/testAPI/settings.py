@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -23,10 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bnlvo9+#da(qkm%raw5j_af3e8fu)s8ar7jxn&s6f5bkhe=qz+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = False
+CORS_ORIGIN_ALLOW_ALL = DEBUG
+ALLOWED_HOSTS = ['188.225.45.185']
 
 # Application definition
 
@@ -57,7 +55,9 @@ CACHES = {
 USER_AGENTS_CACHE = 'default'
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'testAPI.urls'
@@ -87,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'testAPI.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -99,9 +99,17 @@ DATABASES = {
         'PASSWORD': 'roma.ru12',
         'HOST': '127.0.0.1',
         'PORT': '5432'
+    },
+    'postgres': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tracktor_db',
+        'USER': 'root',
+        'PASSWORD': 'postgresql_user_for_track',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
-
+DATABASES['default'] = DATABASES['postgres']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -121,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -134,7 +141,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
