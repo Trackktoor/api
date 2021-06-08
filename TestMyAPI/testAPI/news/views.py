@@ -73,7 +73,7 @@ def NewConsultRequest(request):
         serializer = NewConsultRequestSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'data': serializer.data, 'status': 'OK'})
+            return Response({'status': 'OK'})
         else:
             print(serializer.errors)
 
