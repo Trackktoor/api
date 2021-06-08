@@ -11,7 +11,7 @@ class Project(models.Model):
     CreateDate = models.DateTimeField(auto_now_add=True)
     Description = models.TextField()
     ProjectLink = models.CharField(max_length=255)
-    Photos = models.JSONField('Photos')
+    Photos = models.JSONField()
 
     def __str__(self):
         return self.Name

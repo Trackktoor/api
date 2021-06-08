@@ -4,7 +4,7 @@ from .models import *
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('Name', 'TaskType', 'ProjectType', 'ShortTask', 'Description', 'ProjectLink', 'Photos')
+        fields = ('Name', 'TaskType', 'ProjectType', 'ShortTask', 'Description', 'ProjectLink', 'Photos', 'id')
 
     def create(self, validated_data):
         print('1111')
