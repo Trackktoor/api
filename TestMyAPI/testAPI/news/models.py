@@ -1,6 +1,5 @@
 from django.db import models
 
-
 def get_default_from_photos():
     return {'SmallMobile ': '', 'StoryMobile': '', 'MockupMobile': '', 'BigDesktop': '', 'MockupDesktop': ''}
 
@@ -12,7 +11,7 @@ class Project(models.Model):
     CreateDate = models.DateTimeField(auto_now_add=True)
     Description = models.TextField()
     ProjectLink = models.CharField(max_length=255)
-    Photos = models.CharField(max_length=255)
+    Photos = models.JSONField('Photos')
 
     def __str__(self):
         return self.Name

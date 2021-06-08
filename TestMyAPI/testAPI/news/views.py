@@ -1,11 +1,8 @@
-from .models import *
 from rest_framework import status
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_protect
 from rest_framework.parsers import JSONParser
-from .forms import ProjectForm
 from .serializers import *
 
 
@@ -22,18 +19,14 @@ def project_list(request):
 @csrf_protect
 @api_view(('GET','POST'))
 def setupNewProject(request):
-    if request.method == 'GET':
-        form = ProjectForm()
-        return render(request, 'news/project_add.html', {
-            'form': form
-        })
     if request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = ProjectSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            print('2222222222')
             return Response({'status': "OK"}, status=status.HTTP_201_CREATED)
+        else:
+            print(serializer.errors)
 
 @csrf_protect
 @api_view(['GET', 'DELETE'])
@@ -49,6 +42,7 @@ def project_detail(requset, id):
     if requset.method == "DELETE":
             project.delete()
             return Response({'data': serializer.data, 'status': "OK"})
+
 @api_view(['GET'])
 def project_filter(request, pt):
     try:
@@ -60,17 +54,17 @@ def project_filter(request, pt):
     if request.method == "GET":
         return Response({'data': serializer.data, 'status': "OK"})
 
-api_view(['GET'])
+@csrf_protect
+@api_view(['GET', 'POST'])
 def NewProjectRequest(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
         serializer = NewProjectRequestSerializer(data=data)
-        form = ProjectForm(request.POST[1:])
     if serializer.is_valid():
-        form.save()
+        serializer.save()
         return Response({'data': serializer.data, 'status': "OK"})
     else:
-        return Response({'status': "ERR", 'errCode': 10}) #bad request
+        print(serializer.errors)
 
 @api_view(['POST'])
 def NewConsultRequest(request):
@@ -81,5 +75,5 @@ def NewConsultRequest(request):
             serializer.save()
             return Response({'data': serializer.data, 'status': 'OK'})
         else:
-            return Response({'status': "ERR", 'errCode': 10}) #bad requset
+            print(serializer.errors)
 

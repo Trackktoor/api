@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view
 from .forms import NameForm
 
 @csrf_protect
-@api_view(('GET',))
+@api_view(('GET','POST'))
 def URLs_list(request):
     if request.method == "GET":
         URLs = URL.objects.all()
@@ -30,35 +30,3 @@ def URLs_list(request):
         else:
             print(serializer.errors)
             return Response({'status': "ERR", 'errCode': 10}) #bed request
-
-def click_test_redirection_view(request, url_hash):
-    if request.method == 'GET':
-        url = get_object_or_404(URL, url_hash_value=url_hash)
-        url.clicked()
-
-        URL_for_connect = URL.objects.get(full_url=(url.full_url))
-
-        url_hash = URL_hash.objects.create(url=URL_for_connect, user_agent=request.META.get('HTTP_USER_AGENT', ''),if_mobile=request.user_agent.is_mobile)
-        url_hash.save()
-
-        return redirect(url.full_url)
-
-def click_test_view(request):
-    if request.method == 'GET':
-        urls = URL.objects.all()
-
-        return render(request, 'shortner/test_click.html', {'urls':urls})
-
-def add_new_short_link(request):
-    print(request.POST)
-    form = NameForm({'full_url': request.POST['full_url']})
-    print(form.is_valid())
-    if form.is_valid():
-        print(1)
-        form.save()
-        return redirect('test_click_view')
-    else:
-        form = NameForm()
-    return render(request, 'shortner/shortner_add.html', {
-        'form': form
-    })
