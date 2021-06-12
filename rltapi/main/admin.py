@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(Project)
-admin.site.register(NewProjectRequest)
-admin.site.register(NewConsultRequest)
+admin.site.register(project)
+admin.site.register(new_project_request)
+admin.site.register(new_consult_request)

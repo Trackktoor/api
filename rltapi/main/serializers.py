@@ -3,24 +3,24 @@ from .models import *
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Project
-        fields = ('Name', 'TaskType', 'ProjectType', 'ShortTask', 'Description', 'ProjectLink', 'Photos', 'id')
+        model = project
+        fields = ('name', 'project_type', 'short_task', 'description', 'project_link', 'photos', 'id')
 
     def create(self, validated_data):
-        return Project.objects.create(**validated_data)
+        return project.objects.create(**validated_data)
 
 class NewProjectRequestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = NewProjectRequest
-        fields = ('Name', 'Phone', 'Email', 'Comment', 'ProjectType', 'ProjectTheme', 'ProjectStatus')
+        model = new_project_request
+        fields = ('name', 'phone', 'email', 'comment', 'project_type', 'project_theme', 'status')
 
     def create(self, validated_data):
-        return NewProjectRequest(**validated_data)
+        return new_project_request(**validated_data)
 
 class NewConsultRequestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = NewConsultRequest
-        fields = ('Phone', 'Comment')
+        model = new_consult_request
+        fields = ('phone', 'comment')
 
     def create(self, validated_data):
-        return NewConsultRequest(**validated_data)
+        return new_consult_request(**validated_data)

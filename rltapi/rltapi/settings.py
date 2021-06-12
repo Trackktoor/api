@@ -70,17 +70,8 @@ DATABASES = {
         'PASSWORD': 'roma.ru12',
         'HOST': '127.0.0.1',
         'PORT': '5432'
-    },
-    'postgres': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tracktor_db',
-        'USER': 'root',
-        'PASSWORD': 'postgresql_user_for_track',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
     }
 }
-DATABASES['default'] = DATABASES['postgres']
 
 
 AUTH_PASSWORD_VALIDATORS = [
