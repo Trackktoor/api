@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d1453af-ef0d-4385-baac-023970414fda" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/rltapi/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/main/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/main/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/requarements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/requarements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/rltapi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/rltapi/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rltapi/rltapi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rltapi/rltapi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
