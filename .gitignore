@@ -1,4 +1,12 @@
+#игнорировать каталог venv
 venv/
+env/
+
+#игнорировать каталог .idea
+.idea/ 
+.vscode/ 
+*.sw*
+
 # Created by https://www.toptal.com/developers/gitignore/api/windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows
 
