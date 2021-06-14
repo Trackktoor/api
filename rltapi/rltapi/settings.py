@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-bnlvo9+#da(qkm%raw5j_af3e8fu)s8ar7jxn&s6f5bkhe=qz+
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rlt.pw']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -70,8 +70,17 @@ DATABASES = {
         'PASSWORD': 'roma.ru12',
         'HOST': '127.0.0.1',
         'PORT': '5432'
+    },
+    'postgres': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'rltapi',
+        'USER': 'super_root',
+        'PASSWORD': 'postgresql_user_for_track',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
+DATABASES['default'] = DATABASES['default']
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -88,6 +97,19 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = "rltsmtp@mail.ru"
+EMAIL_HOST_PASSWORD = "CdI2zyl6XZgLuLjbbRFN"
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+ALLOWED_HOSTS = ['*']
 
 
 LANGUAGE_CODE = 'en-us'
