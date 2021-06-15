@@ -18,7 +18,6 @@ def URLs_list(request):
         return Response({'data': URLs, 'status': "OK"})
 
 
-
 def click_test_redirection_view(request, url_hash):
     if request.method == 'GET':
         url = get_object_or_404(URL, short_url=url_hash)
@@ -27,7 +26,8 @@ def click_test_redirection_view(request, url_hash):
         URL_for_connect = URL.objects.get(url=(url.url))
 
         url_hash = URL_hash.objects.create(url=URL_for_connect, user_agent=request.META.get('HTTP_USER_AGENT', ''),
-                                           if_mobile=request.user_agent.is_mobile, ip=request.META.get('REMOTE_ADDR', ''))
+                                           if_mobile=request.user_agent.is_mobile,
+                                           ip=request.META.get('REMOTE_ADDR', ''))
         url_hash.save()
 
         return redirect(url.url)
@@ -38,18 +38,21 @@ def click_test_redirection_view(request, url_hash):
 def add_new_short_link(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
+        url = get_object_or_404(URL, url=data['url'])
+        if URL.objects.get(url=url.url):
+            return Response({'data': {"short_url": "https://rlt.pw/" + url.short_url}, 'status': "OK"})
         serializer = URLSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             URL_for_connect = URL.objects.get(url=(data['url']))
-            print(8795)
-            print(request.META.get('REMOTE_ADDR', ''))
             url_hash = URL_hash.objects.create(url=URL_for_connect, user_agent=request.META.get('HTTP_USER_AGENT', ''),
-                                               if_mobile=request.user_agent.is_mobile, ip=request.META.get('REMOTE_ADDR', ''))
+                                               if_mobile=request.user_agent.is_mobile,
+                                               ip=request.META.get('REMOTE_ADDR', ''))
             url_hash.save()
-            return Response({'data': {"short_url": serializer.data['short_url']}, 'status': "OK"})
+            return Response({'data': {"short_url": "https://rlt.pw/" + serializer.data['short_url']}, 'status': "OK"})
         else:
             return Response({'status': "ERR", 'errCode': 502})
+
 
 @csrf_protect
 @api_view(('GET', 'POST'))
