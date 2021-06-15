@@ -80,7 +80,7 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-DATABASES['default'] = DATABASES['default']
+DATABASES['default'] = DATABASES['postgres']
 
 
 AUTH_PASSWORD_VALIDATORS = [
